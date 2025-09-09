@@ -1,21 +1,23 @@
 import type { AxisModel } from "@syncfusion/ej2-react-charts";
-
+import homeImg from "../../public/icons/home.svg";
+import usersImg from "../../public/icons/users.svg";
+import itineraryImg from "../../public/icons/itinerary.svg";
 export const sidebarItems = [
   {
     id: 1,
-    icon: "/assets/icons/home.svg",
+    icon: homeImg,
     label: "Dashboard",
     href: "/dashboard",
   },
   {
     id: 3,
-    icon: "/assets/icons/users.svg",
+    icon: usersImg,
     label: "All Users",
-    href: "/all-users",
+    href: "all-users",
   },
   {
     id: 4,
-    icon: "/assets/icons/itinerary.svg",
+    icon: itineraryImg,
     label: "AI Trips",
     href: "/trips",
   },

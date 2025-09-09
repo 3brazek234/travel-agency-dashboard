@@ -227,7 +227,7 @@
   .nav-footer {
     @apply flex items-center gap-2.5 pb-8;
     img {
-      @apply size-10 rounded-full aspect-square;
+      @apply w-10 h-10 rounded-full aspect-square;
     }
     article {
       @apply flex flex-col gap-[2px] max-w-[115px];
@@ -264,7 +264,7 @@
       img {
         @apply size-10 rounded-full aspect-square;
       }
-    }
+    } 
   }
   .footer-container {
     @apply flex justify-between items-center h-full gap-5;

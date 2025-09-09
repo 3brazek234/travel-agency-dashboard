@@ -16,11 +16,11 @@ export const routes = createBrowserRouter([
     ],
   },
   {
-    path: "/admin",
+    path: "dashboard",
     element: <AdminLayout />,
     children: [
-      { path: "users", element: <AllUsers /> },
       { index: true, element: <Home /> },
+      { path: "all-users", element: <AllUsers /> },
     ],
   },
 ]);

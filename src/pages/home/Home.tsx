@@ -1,7 +1,13 @@
+import Header from "../../component/common/Header"
 
 function Home() {
+    const user = {name: "Ahmed Hamdy"}
   return (
-    <div>Home</div>
+    <main className="dashboard wrapper">
+      <Header title={`Welcome ${user?.name ?? "Guest"} `}
+      description="Track activity, trends and popular destinations is real time."
+      />
+    </main>
   )
 }
 
