@@ -1,6 +1,9 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import dayjs from "dayjs";
+import { redirect } from "react-router-dom";
+import { getExistingUser, storeUserData } from "../appwrite/auth";
+import { account } from "../appwrite/client";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -68,3 +71,29 @@ export const formatKey = (key: keyof TripFormData) => {
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (str) => str.toUpperCase());
 };
+
+//  protected route loader
+export async function clientLoader() {
+  try {
+    const user = await account.get();
+    console.log("Found user:", user);
+
+    if (!user.$id) {
+      return redirect("/");
+    }
+
+    const existingUser = await getExistingUser(user.$id);
+    console.log("Found existing user:", existingUser);
+
+    if (existingUser) {
+      return existingUser;
+    } else {
+      // المستخدم غير موجود، قم بإنشائه ثم أرجع بياناته
+      const newUser = await storeUserData();
+      return newUser;
+    }
+  } catch (error) {
+    console.error("Client loader error, redirecting:", error);
+    return redirect("/");
+  }
+}

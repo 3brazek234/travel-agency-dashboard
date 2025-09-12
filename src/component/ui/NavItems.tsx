@@ -1,18 +1,19 @@
-import {  NavLink } from "react-router-dom";
+import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { sidebarItems } from "../../constants";
-import usersImg from "../../../public/images/david.webp";
-import logOut from '../../../public/icons/logout.svg'
+import logOut from "../../../public/icons/logout.svg";
 import Logo from "./Logo";
-function NavItems({handleClose}: {handleClose?: () => void}) {
-  const user = {
-    name: "Ahmed Hamdy",
-    email: "ahmed@example.com",
-    imgUrl: usersImg,
+import { logoutUser } from "../../appwrite/auth";
+function NavItems({ handleClose }: { handleClose?: () => void }) {
+  const navigate = useNavigate();
+  const logOutFun = () => {
+    logoutUser();
+    navigate("/");
   };
+  const user = useLoaderData();
   return (
     <section className="nav-items">
-       <Logo/>
+      <Logo />
       <div className="container">
         <nav>
           {sidebarItems.map(({ id, label, icon: Icon, href }) => (
@@ -22,7 +23,7 @@ function NavItems({handleClose}: {handleClose?: () => void}) {
                   className={cn("group nav-item", {
                     "bg-primary-100 !text-white": isActive,
                   })}
-                    onClick={handleClose}
+                  onClick={handleClose}
                 >
                   <img
                     src={Icon}
@@ -41,13 +42,12 @@ function NavItems({handleClose}: {handleClose?: () => void}) {
           <img
             src={user?.imgUrl || "/assets/images/david.webp"}
             alt={user?.name}
-       
           />
           <article>
             <h2>{user?.name}</h2>
             <p>{user?.email}</p>
           </article>
-          <button className="cursor-pointer">
+          <button className="cursor-pointer" onClick={logOutFun}>
             <img src={logOut} alt="logout" className="w-5 h-5" />
           </button>
         </footer>

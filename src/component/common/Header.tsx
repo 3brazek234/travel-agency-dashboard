@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 function Header({title, description}: {title: string, description: string}) {
    const pathName = useLocation().pathname;
-   console.log(pathName);
   return (
  
  <header className="header">

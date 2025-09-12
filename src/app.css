@@ -19,7 +19,7 @@
   }
 
   .stats-card {
-    @apply p-6 flex flex-col gap-6 bg-white shadow-400 rounded-20 text-dark-100;
+    @apply p-6 flex flex-col gap-6  rounded-20 text-dark-100;
 
     .content {
       @apply flex flex-row md:flex-col-reverse xl:flex-row xl:items-center gap-3 justify-between;
@@ -200,7 +200,7 @@
       }
     }
   }
-  .trip-card {
+  /* .trip-card {
     @apply shadow-300 bg-white rounded-[20px] flex-col w-full relative;
     img {
       @apply w-full h-[160px] rounded-t-xl object-cover aspect-video;
@@ -217,7 +217,7 @@
         }
       }
     }
-  }
+  } */
   .link-logo {
     @apply flex items-center gap-1.5 py-10 border-b border-light-100;
     h1 {
