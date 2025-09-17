@@ -3,7 +3,7 @@ declare interface BaseUser {
   name: string;
   email: string;
   dateJoined: string;
-  imageUrl: string;
+  imgUrl: string;
 }
 
 declare interface UserData extends BaseUser {

@@ -87,35 +87,34 @@ export const logoutUser = async () => {
 export const getUser = async () => {
   try {
     const user = await account.get();
-    if (!user) return redirect("/sign-in");
+    if (!user) return redirect("/");
 
     const { documents } = await database.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
       [
         Query.equal("accountId", user.$id),
-        Query.select(["name", "email", "imageUrl", "joinedAt", "accountId"]),
+        Query.select(["name", "email", "imgUrl", "joinedat", "accountid"]),
       ]
     );
 
-    return documents.length > 0 ? documents[0] : redirect("/sign-in");
+    return documents.length > 0 ? documents[0] : redirect("/");
   } catch (error) {
     console.error("Error fetching user:", error);
     return null;
   }
 };
 
-export const getAllUsers = async (limit: number, offset: number) => {
+export const getAllUsers = async  (limit, offset) => {
+
   try {
     const { documents: users, total } = await database.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
       [Query.limit(limit), Query.offset(offset)]
     );
-
-    if (total === 0) return { users: [], total };
-
-    return { users, total };
+      console.log( total, "users from getAllUsers function");
+    return { users , total };
   } catch (e) {
     console.log("Error fetching users", e);
     return { users: [], total: 0 };
