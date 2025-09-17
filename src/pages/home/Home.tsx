@@ -13,9 +13,9 @@ export const getAllUser  = async () => {
 }
 const allTrips = [
   {
-    id: 1,
+    id: "1",
     name: "Tropical Rewind",
-    imageUrls: img1,
+    imageUrls: [img1],
     itinerary: [{ location: "Thailand" }],
     tags: ["Adventure", "Culture" , "Nature"],
     travelStyle: "Solo",
@@ -24,25 +24,25 @@ const allTrips = [
   {
     id: 2,
     name: "French Reverie",
-    imageUrls: img2,
+    imageUrls: [img2],
     itinerary: [{ location: "Paris" }],
     tags: ["Relaxation", "Culinary", "Romance"],
     travelStyle: "Family",
     estimatedPrice: "$2,000",
   },
   {
-    id: 3,
+    id: "3",
     name: "Zen Break",
-    imageUrls: img3,
+    imageUrls: [img3],
     itinerary: [{ location: "Japan" }],
     tags: ["Shopping", "Luxury"],
     travelStyle: "Couple",
     estimatedPrice: "$3,000",
   },
   {
-    id: 4,
+    id: "4",
     name: "Adventure in Westeros",
-    imageUrls: img4,
+    imageUrls: [img4],
     itinerary: [{ location: "Croatia" }],
     tags: ["Historical", "Culture"],
     travelStyle: "Friends",

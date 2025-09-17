@@ -1,8 +1,4 @@
 import { Account, Client, Databases, Functions, Storage } from "appwrite";
-// --- الاختبار يبدأ هنا ---
-console.log("Reading environment variables...");
-console.log("VITE_APPWRITE_PROJECT_ID:", import.meta.env.VITE_APPWRITE_PROJECT_ID);
-// --- الاختبار ينتهي هنا ---
 export const appwriteConfig = {
   endpoint: import.meta.env.VITE_APPWRITE_API_ENDPOINT,
   projectId: import.meta.env.VITE_APPWRITE_PROJECT_ID,
