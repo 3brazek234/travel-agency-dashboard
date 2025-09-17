@@ -18,12 +18,10 @@ interface TripCardsProps {
 }
 
 export default function TripCards({ trip }: TripCardsProps) {
-  // دمج الـ tags في مصفوفة واحدة نظيفة
   const tags = [trip.interests, trip.travelStyle].flat().filter(Boolean);
 
   return (
     <Link
-      // --- التصحيح: استخدام المسار الصحيح والكامل ---
       to={`/dashboard/trips/${trip.id}`}
       className="shadow-lg bg-white rounded-2xl flex flex-col w-full relative group transform hover:-translate-y-2 transition-all duration-300"
     >

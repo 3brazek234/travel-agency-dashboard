@@ -1,43 +1,64 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Tourvisto Dashboard
 
-Currently, two official plugins are available:
+A modern travel dashboard web app built with React, TypeScript, Vite, Tailwind CSS, Appwrite, and Syncfusion UI components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- User authentication via Google (Appwrite OAuth)
+- Manage destinations, itineraries, and user activity
+- Responsive, beautiful UI with Tailwind CSS
+- Admin and Auth layouts
+- Syncfusion UI for advanced components (buttons, grids, charts, etc.)
+- State management with Zustand
+- Day.js for date handling
+- Google People API integration for profile photos
 
-## Expanding the ESLint configuration
+## Tech Stack
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS
+- Appwrite (auth, database)
+- Syncfusion React UI
+- Day.js
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+2. **Run the development server:**
+   ```sh
+   npm run dev
+   ```
+3. **Build for production:**
+   ```sh
+   npm run build
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 ```
+src/
+  appwrite/        # Appwrite API logic (auth, client, trips)
+  component/       # Reusable UI components
+  constants/       # Static data and config
+  layout/          # Layout components (Admin, Auth)
+  lib/             # Utilities and types
+  pages/           # Page components (login, home, register, etc.)
+  routes/          # React Router setup
+  services/        # Service logic (e.g., create-trip)
+  store/           # Zustand state management
+  app.css          # Custom and Tailwind styles
+  main.tsx         # App entry point
+  App.tsx          # Main app component
+```
+
+## Environment Setup
+- Configure Appwrite project and update `src/appwrite/client.ts` with your credentials.
+- Add Google OAuth credentials in Appwrite dashboard.
+
+## License
+MIT
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 

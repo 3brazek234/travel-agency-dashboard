@@ -73,7 +73,19 @@ declare interface Trip {
   location: Location;
   payment_link: string;
 }
-
+export type Country = {
+  name: {
+    common: string;
+  };
+  flags: {
+    png: string;
+    svg: string;
+  };
+  latlng: [number, number];
+  maps?: {
+    openStreetMaps?: string;
+  };
+};
 declare interface TripCardProps {
   id: string;
   name: string;

@@ -17,33 +17,8 @@ import loaderIcon from "../../../public/icons/loader.svg";
 import { account, database } from "../../appwrite/client";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ID } from "appwrite";
-type Country = {
-  name: {
-    common: string;
-  };
-  flags: {
-    png: string;
-    svg: string;
-  };
-  latlng: [number, number];
-  maps?: {
-    openStreetMaps?: string;
-  };
-};
+import type { Country, TripFormData } from "../..";
 
-export const loader = async () => {
-  const response = await fetch(
-    "https://restcountries.com/v3.1/all?fields=name,flags,latlng,maps"
-  );
-  const data = await response.json();
-
-  return data.map((country: Country) => ({
-    name: country.name?.common || "",
-    latlng: country.latlng,
-    value: country.name?.common || "",
-    openStreetMap: country.maps?.openStreetMaps,
-  }));
-};
 function CreateTrip() {
   const data = useLoaderData() as Country[];
   const countryData = data.map((country) => ({
@@ -65,15 +40,11 @@ function CreateTrip() {
     e.preventDefault();
     setErr(null);
     setLoading(true);
-
-    // --- Validation (كما هي) ---
     if (Object.values(formData).some((value) => value === "" || value === 0)) {
       setErr("All fields are required");
       setLoading(false);
       return;
     }
-    // ...
-
     try {
       const user = await account.get();
       if (!user) {
@@ -81,8 +52,6 @@ function CreateTrip() {
         setLoading(false);
         return;
       }
-
-      // --- 1. استدعاء Gemini API مباشرة من الفرونت إند ---
       const databaseAppwrite = import.meta.env.VITE_APPWRITE_DATABASE_ID;
       const tripsCollection = import.meta.env.VITE_APPWRITE_TRIPS_COLLECTION_ID;
 
@@ -142,30 +111,27 @@ function CreateTrip() {
       const tripText = response.text();
       console.log(tripText);
 
-      // ... (كود تنظيف الـ JSON)
       const cleanedJsonString = tripText.substring(
         tripText.indexOf("{"),
         tripText.lastIndexOf("}") + 1
       );
       const trip = JSON.parse(cleanedJsonString);
 
-      // --- 2. استدعاء Unsplash API مباشرة ---
       const unsplashApiKey = import.meta.env.VITE_UNSPLAH_ACCESS_KEY;
       const imageResponse = await fetch(
         `https://api.unsplash.com/search/photos?query=${formData.country}&client_id=${unsplashApiKey}&per_page=3`
       );
       const imageData = await imageResponse.json();
       const imageUrls = imageData.results.map(
-        (imgResult : string[]) => imgResult.urls?.regular || null
+        (imgResult: string[]) => imgResult.urls?.regular || null
       );
       console.log(imageUrls);
-      // --- 3. حفظ النتيجة في قاعدة بيانات Appwrite ---
       const savedItinerary = await database.createDocument(
         databaseAppwrite,
         tripsCollection,
         ID.unique(),
         {
-          tripdetail: JSON.stringify(trip), // <--- d صغيرة
+          tripdetail: JSON.stringify(trip),
           createdAt: new Date().toISOString(),
           imgUrl: imageUrls,
           userId: JSON.stringify(user.$id),

@@ -1,6 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom";
-import { getSingleTrip } from "../../appwrite/trips";
-import { cn, getFirstWord, parseTripData } from "../../lib/utils";
+import { useLoaderData } from "react-router-dom";import { cn, getFirstWord, parseTripData } from "../../lib/utils";
 import Header from "../../component/common/Header";
 import type { TripDocument } from "../../lib/tripDetails.Interfaces";
 import InfoPill from "../../component/pageComponent/trips/InfoPill";
@@ -12,14 +10,7 @@ import {
   ChipListComponent,
   ChipsDirective,
 } from "@syncfusion/ej2-react-buttons";
-export const loaderTripDetails = async ({ params }: LoaderFunctionArgs) => {
-  const { id } = params;
-  if (!id) {
-    throw new Error("id is required");
-  }
-  const trip = await getSingleTrip(id);
-  return trip;
-};
+
 
 function TripDetails() {
   const loaderData = useLoaderData() as TripDocument;

@@ -6,9 +6,7 @@ import { lazy, Suspense } from "react";
 import LoadingSpinner from "../component/ui/LoadingSpinner";
 import { clientLoader } from "../lib/utils";
 import { fetchUsers } from "../pages/allUsers/AllUsers";
-import { loader } from "../pages/trips/CreateTrip";
-import { loaderTripDetails } from "../pages/trips/TripDetails";
-import { loaderAllTrips } from "../pages/trips/Trips";
+import { createTripLoader, loaderAllTrips, loaderTripDetails } from "./loader";
 const AdminLayoutLazy = lazy(() => import("../layout/AdminLayout"));
 const HomeLazy = lazy(() => import("../pages/home/Home"));
 const AllUsersLazy = lazy(() => import("../pages/allUsers/AllUsers"));
@@ -50,7 +48,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "trips/new",
-        loader: loader,
+        loader: createTripLoader,
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <TripsFormLazy />

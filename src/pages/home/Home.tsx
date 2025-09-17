@@ -5,19 +5,15 @@ import img3 from "/public/images/sample4.jpg";
 import img1 from "/public/images/sample1.jpg";
 import img2 from "/public/images/sample2.jpg";
 import img4 from "/public/images/sample3.jpg";
-import { getUser } from "../../appwrite/auth";
 import { useLoaderData } from "react-router-dom";
-export const getAllUser  = async () => {
-  const user = await getUser();
-  return user;
-}
+
 const allTrips = [
   {
     id: "1",
     name: "Tropical Rewind",
     imageUrls: [img1],
     itinerary: [{ location: "Thailand" }],
-    tags: ["Adventure", "Culture" , "Nature"],
+    tags: ["Adventure", "Culture", "Nature"],
     travelStyle: "Solo",
     estimatedPrice: "$1,000",
   },
@@ -58,7 +54,6 @@ const dashboardStats = {
 };
 function Home() {
   const user = useLoaderData();
-  console.log(user, "user from loader data" );
   return (
     <main className="flex flex-col gap-10 w-full pb-20 max-w-7xl mx-auto px-4 lg:px-8">
       <Header

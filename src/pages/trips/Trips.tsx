@@ -1,22 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 
-
-import { parseTripData } from "../../lib/utils";
 import Header from "../../component/common/Header";
-import { getAllTrips } from "../../appwrite/trips";
 import TripCards from "../../component/pageComponent/Home/TripCards";
-
-export const loaderAllTrips = async () => {
-  const { allTrips } = await getAllTrips();
-
-  return {
-    trips: allTrips.map(({ $id, tripdetail, imgUrl }) => ({
-      id: $id,
-      ...parseTripData(tripdetail),
-      imageUrls: imgUrl ?? [],
-    })),
-  };
-};
 
 const Trips = () => {
   const { trips } = useLoaderData();
@@ -34,7 +19,6 @@ const Trips = () => {
         {trips && trips.length > 0 ? (
           <div className="trip-grid mb-4">
             {trips.map((trip) => (
-              // --- التصحيح: أرسل الـ object 'trip' بالكامل ---
               <TripCards key={trip.id} trip={trip} />
             ))}
           </div>
