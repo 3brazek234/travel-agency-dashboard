@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import locationMark from "../../../../public/icons/location-mark.svg";
+import locationMark from "../../../assets/icons/location-mark.svg";
 import { ChipListComponent, ChipsDirective, ChipDirective } from "@syncfusion/ej2-react-buttons";
 import {  getFirstWord } from "../../../lib/utils"
 
 // واجهة الـ props الآن صحيحة
 interface TripCardsProps {
   trip: {
-    id: string;
+    id: string | number;  // Accept both string and number
     name: string;
-    imageUrls: string[]; // <-- يجب أن تكون مصفوفة
+    imageUrls: string[];
     itinerary: { location: string }[];
     tags: string[];
     travelStyle: string;
-    interests: string;
+    interests?: string; // Optional field
     estimatedPrice: string;
   };
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../../component/ui/Logo";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
-import google from "../../../public/icons/google.svg";
+import google from "../../assets/icons/google.svg";
 import { loginWithGoogle } from "../../appwrite/auth";
 
 function Login() {

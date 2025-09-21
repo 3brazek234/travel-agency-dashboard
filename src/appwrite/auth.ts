@@ -105,13 +105,12 @@ export const getUser = async () => {
   }
 };
 
-export const getAllUsers = async  (limit, offset) => {
+export const getAllUsers = async  () => {
 
   try {
     const { documents: users, total } = await database.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
-      [Query.limit(limit), Query.offset(offset)]
     );
       console.log( total, "users from getAllUsers function");
     return { users , total };

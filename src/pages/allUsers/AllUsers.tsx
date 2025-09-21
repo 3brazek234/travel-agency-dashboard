@@ -11,16 +11,16 @@ interface BaseUser {
   name: string;
   email: string;
   dateJoined: string;
-  imageUrl: string;
+  imgUrl: string;
 }
 export const fetchUsers = async () => {
-  const data = await getAllUsers(5, 0);
+  const data = await getAllUsers();
   return data;
 };
 
 function AllUsers() {
   const { users, total } = useLoaderData();
-
+  console.log(users);
   return (
     <main className="w-full min-h-screen flex flex-col gap-10 max-w-7xl mx-auto px-4 lg:px-8">
       <Header

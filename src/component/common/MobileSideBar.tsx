@@ -1,7 +1,7 @@
 // &ts-nocheck
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import Logo from "../ui/Logo";
-import toggle from "../../../public/icons/menu.svg";
+import toggle from "../../assets/icons/menu.svg";
 import NavItems from "../ui/NavItems";
 function MobileSideBar() {
   let sidebar: SidebarComponent;
@@ -18,7 +18,11 @@ function MobileSideBar() {
       </header>
       <SidebarComponent
         width={270}
-        ref={(sidebarInstance) => (sidebar = sidebarInstance)}
+        ref={(sidebarInstance: SidebarComponent | null) => {
+          if (sidebarInstance) {
+            sidebar = sidebarInstance;
+          }
+        }}
         created={() => sidebar.hide()}
         closeOnDocumentClick={true}
         type="Over"

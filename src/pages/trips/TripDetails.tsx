@@ -1,12 +1,14 @@
-import { useLoaderData } from "react-router-dom";import { cn, getFirstWord, parseTripData } from "../../lib/utils";
+import { useLoaderData } from "react-router-dom";
+import { cn, getFirstWord, parseTripData } from "../../lib/utils";
 import Header from "../../component/common/Header";
 import type { TripDocument } from "../../lib/tripDetails.Interfaces";
+import type { Activity, DayPlan } from "../../types/trip";
 import InfoPill from "../../component/pageComponent/trips/InfoPill";
-import star from "../../../public/icons/star.svg";
-import calendar from "../../../public/icons/calendar.svg";
-import location from "../../../public/icons/location-mark.svg";
+import star from "../../assets/icons/star.svg";
+import calendar from "../../assets/icons/calendar.svg";
+import location from "../../assets/icons/location-mark.svg";
 import {
-  ChipDirective,
+  ChipDirective,  
   ChipListComponent,
   ChipsDirective,
 } from "@syncfusion/ej2-react-buttons";
@@ -132,7 +134,7 @@ function TripDetails() {
             </h3>
 
             <ul className="flex flex-col sm:gap-3 gap-7">
-              {dayPlan.activities.map((activity, index: number) => (
+              {dayPlan.activities.map((activity: Activity, index: number) => (
                 <li
                   key={index}
                   className="flex max-sm:flex-col flex-row justify-between sm:gap-7 gap-3 text-sm md:text-lg font-normal text-dark-400 !list-disc"

@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { redirect } from "react-router-dom";
 import { getExistingUser, storeUserData } from "../appwrite/auth";
 import { account } from "../appwrite/client";
+import type { TrendResult, Trip, TripFormData } from "..";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

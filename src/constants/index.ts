@@ -1,8 +1,9 @@
 import type { AxisModel } from "@syncfusion/ej2-react-charts";
-import homeImg from "../../public/icons/home.svg";
-import usersImg from "../../public/icons/users.svg";
-import itineraryImg from "../../public/icons/itinerary.svg";
+import homeImg from "../assets/icons/home.svg";
+import usersImg from "../assets/icons/users.svg";
+import itineraryImg from "../assets/icons/itinerary.svg";
 import { formatDate } from "../lib/utils";
+import type { TripFormData } from "..";
 export const sidebarItems = [
   {
     id: 1,

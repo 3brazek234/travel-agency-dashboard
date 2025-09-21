@@ -5,7 +5,6 @@ import TripCards from "../../component/pageComponent/Home/TripCards";
 
 const Trips = () => {
   const { trips } = useLoaderData();
-  console.log(trips);
 
   return (
     <main className="flex flex-col gap-10 w-full pb-20 max-w-7xl mx-auto px-4 lg:px-8">
@@ -18,7 +17,16 @@ const Trips = () => {
       <section>
         {trips && trips.length > 0 ? (
           <div className="trip-grid mb-4">
-            {trips.map((trip) => (
+            {trips.map((trip: {
+              id: string | number;
+              name: string;
+              imageUrls: string[];
+              itinerary: { location: string }[];
+              tags: string[];
+              travelStyle: string;
+              interests?: string;
+              estimatedPrice: string;
+            }) => (
               <TripCards key={trip.id} trip={trip} />
             ))}
           </div>

@@ -1,10 +1,10 @@
 import Header from "../../component/common/Header";
 import StateCards from "../../component/pageComponent/Home/StateCards";
 import TripCards from "../../component/pageComponent/Home/TripCards";
-import img3 from "/public/images/sample4.jpg";
-import img1 from "/public/images/sample1.jpg";
-import img2 from "/public/images/sample2.jpg";
-import img4 from "/public/images/sample3.jpg";
+import img3 from "../../assets/images/card-img-5.png";
+import img1 from "../../assets/images/card-img-1.png";
+import img2 from "../../assets/images/card-img-2.png";
+import img4 from "../../assets/images/card-img-3.png";
 import { useLoaderData } from "react-router-dom";
 
 const allTrips = [

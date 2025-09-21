@@ -1,9 +1,10 @@
 import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { sidebarItems } from "../../constants";
-import logOut from "../../../public/icons/logout.svg";
+import logOut from "../../assets/icons/logout.svg";
 import Logo from "./Logo";
 import { logoutUser } from "../../appwrite/auth";
+import type { User } from "../..";
 
 
 

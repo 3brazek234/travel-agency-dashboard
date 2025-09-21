@@ -7,7 +7,7 @@ interface HeaderProps {
   ctaText?: string;
   ctaUrl?: string;
 }
-import iconPlus from '../../../public/icons/plus.svg'
+import iconPlus from '../../assets/icons/plus.svg'
 function Header({ title, description, ctaText, ctaUrl }: HeaderProps) {
   const pathName = useLocation().pathname;
   return (

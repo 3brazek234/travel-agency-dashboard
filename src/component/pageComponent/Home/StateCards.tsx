@@ -1,8 +1,8 @@
 import { calculateTrendPercentage, cn } from "../../../lib/utils";
-import upImg from "../../../../public/icons/arrow-down-red.svg";
-import downImg from "../../../../public/icons/arrow-up-green.svg";
-import increment from "../../../../public/icons/increment.svg";
-import decrement from "../../../../public/icons/decrement.svg";
+import upImg from "../../../assets/icons/arrow-down-red.svg";
+import downImg from "../../../assets/icons/arrow-up-green.svg";
+import increment from "../../../assets/icons/increment.svg";
+import decrement from "../../../assets/icons/decrement.svg";
 
 function StateCards({
   headerTitle,

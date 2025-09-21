@@ -12,12 +12,19 @@ import {
 import { useState } from "react";
 import { world_map } from "../../constants/world_map";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
-import magicIcon from "../../../public/icons/magic-star.svg";
-import loaderIcon from "../../../public/icons/loader.svg";
+import magicIcon from "../../assets/icons/magic-star.svg";
+import loaderIcon from "../../assets/icons/loader.svg";
 import { account, database } from "../../appwrite/client";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ID } from "appwrite";
 import type { Country, TripFormData } from "../..";
+interface UnsplashImage {
+  urls: {
+    regular: string;
+    [key: string]: any;
+  };
+  [key: string]: any;
+}
 
 function CreateTrip() {
   const data = useLoaderData() as Country[];
@@ -25,7 +32,7 @@ function CreateTrip() {
     name: country.name,
     value: country.name,
   }));
-  const navigate = useNavigate(); // <-- جهز الـ navigate
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<TripFormData>({
     country: countryData[0].name.common || "",
@@ -109,32 +116,34 @@ function CreateTrip() {
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const tripText = response.text();
-      console.log(tripText);
 
       const cleanedJsonString = tripText.substring(
         tripText.indexOf("{"),
         tripText.lastIndexOf("}") + 1
       );
-      const trip = JSON.parse(cleanedJsonString);
 
+
+      
       const unsplashApiKey = import.meta.env.VITE_UNSPLAH_ACCESS_KEY;
+
       const imageResponse = await fetch(
         `https://api.unsplash.com/search/photos?query=${formData.country}&client_id=${unsplashApiKey}&per_page=3`
       );
-      const imageData = await imageResponse.json();
+      const imageData = (await imageResponse.json()) as {
+        results: UnsplashImage[];
+      };
       const imageUrls = imageData.results.map(
-        (imgResult: string[]) => imgResult.urls?.regular || null
+        (imgResult: UnsplashImage) => imgResult.urls?.regular || null
       );
-      console.log(imageUrls);
       const savedItinerary = await database.createDocument(
         databaseAppwrite,
         tripsCollection,
         ID.unique(),
         {
-          tripdetail: JSON.stringify(trip),
+          tripdetail: cleanedJsonString,
           createdAt: new Date().toISOString(),
           imgUrl: imageUrls,
-          userId: JSON.stringify(user.$id),
+          userId: user.$id,
           payment_link: "sasasasas",
         }
       );

@@ -14,10 +14,19 @@ declare interface UserData extends BaseUser {
 declare type User = BaseUser;
 
 declare interface Country {
-  name: string;
-  coordinates: [number, number];
-  value: string;
-  openStreetMap?: string;
+  name: {
+    common: string;
+    official?: string;
+  };
+  latlng: [number, number];
+  value?: string;
+  flags?: {
+    png: string;
+    svg: string;
+  };
+  maps?: {
+    openStreetMaps?: string;
+  };
 }
 
 declare interface DropdownItem {
